@@ -1,0 +1,12 @@
+//onScroll={Animated.event(
+//                      [
+   //                     {
+     //                   nativeEvent: {
+     //                   contentOffset: {
+      //                    x: mapAnimation,
+       //                 }
+       //               },
+       //             },
+        //          ],
+       //           {useNativeDriver: true}
+       //         )}

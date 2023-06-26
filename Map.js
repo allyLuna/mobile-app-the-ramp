@@ -1,6 +1,6 @@
 import * as  React from 'react';
 import MapView, {Callout, Circle, Marker} from 'react-native-maps';
-import { Image ,Dimensions, StyleSheet, View, Text, TextInput, Button, Animated, ScrollView } from 'react-native';
+import { Image ,Dimensions, StyleSheet, View, Text, TextInput, Button, Animated, ScrollView, Pressable,  TouchableOpacity, Alert } from 'react-native';
 import * as Location from 'expo-location';
 import Geocoder from 'react-native-geocoding';
 import skateSpots from './Spots.js'
@@ -181,7 +181,7 @@ export default function Map() {
                     pagingEnabled
                     scrollEventThrottle={1}
                     showsHorizontalScrollIndicator={false}
-                    snapToInterval={CARD_WIDTH + 38}
+                    snapToInterval={CARD_WIDTH + 20}
                     snapToAlignment="center"
                     style={styles.scrollView}
                     contentInset={{
@@ -193,18 +193,7 @@ export default function Map() {
                     contentContainerStyle={{
                       paddingHorizontal: Platform.OS === 'android' ? SPACING_FOR_CARD_INSET : 0
                       }}
-                      onScroll={Animated.event(
-                      [
-                        {
-                        nativeEvent: {
-                        contentOffset: {
-                          x: mapAnimation,
-                        }
-                      },
-                    },
-                  ],
-                  {useNativeDriver: true}
-                )}
+                      
                     >
                     
                     {skateSpots.map((marker, index) =>(
@@ -217,7 +206,16 @@ export default function Map() {
                       <View style={styles.textContent}>
                         <Text numberOfLines={1} style={styles.cardtitle}>{marker.title}</Text>
                         <Text numberOfLines={1} style={styles.cardDescription}>{marker.description}</Text>
+                        <Pressable style={styles.btnstyle}
+                                  onPress={() => Alert.alert('Simple Button pressed')} >
+                           <Text style={styles.btnTitle}>Directions</Text>
+                              </Pressable>
+                              <Pressable style={[styles.btnstyle, {position:'absolute', marginLeft: 115, marginTop: 55}]} 
+                                  onPress={() => Alert.alert('Simple Button pressed')} >
+                           <Text style={styles.btnTitle}>Rate</Text>
+                              </Pressable>
                       </View>
+
                     </View>
                   ))}
                 </Animated.ScrollView>
@@ -231,12 +229,13 @@ const styles = StyleSheet.create({
   
   btnstyle: {
     alignItems: 'center',
-    marginTop: 400,
-   height: 35,
+    marginTop: 5,
+   height: 25,
     borderRadius: 10,
-    elevation: 3,
+    elevation: 1,
     backgroundColor: '#FFA559',
-    position:'relative'
+    position:'relative',
+    width: 100,
   },
   navbar:{
     width: '95%',
@@ -344,6 +343,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#fff',
     width:CARD_WIDTH,
     height: CARD_HEIGHT,
+    marginVertical: 5,
   },
 
   cardImage: {
@@ -355,9 +355,10 @@ const styles = StyleSheet.create({
    textContent: {
     flex: 2,
     padding: 10,
+    marginBottom: 35
   },
   cardtitle: {
-    fontSize: 12,
+    fontSize: 14,
     marginTop: 5,
     fontWeight: "bold",
   },
@@ -369,4 +370,13 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
+  button: {
+    alignItems: 'center',
+    marginTop: 5
+  },
+ btnTitle: {
+  fontSize: 12,
+  fontWeight: 'bold',
+  marginTop:3.5
+}
 });
