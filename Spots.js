@@ -7,7 +7,8 @@ let skateSpots = [
             longitude: 121.0976571
         },
         description: "Open hours 9:00 am - 10:00 pm",
-        image: require("./assets/Rainforest.jpg")
+        image: require("./assets/Rainforest.jpg"),
+        rating: 4
     },
     //Marikina
     {
@@ -17,7 +18,8 @@ let skateSpots = [
             longitude: 121.076739
         },
         description: "Open hours 9:00 am - 10:00 pm",
-        image: require("./assets/Riverbanks.jpg")
+        image: require("./assets/Riverbanks.jpg"),
+        rating: 4
     },
     {
         title: "Skating Rink",
@@ -26,7 +28,8 @@ let skateSpots = [
             longitude: 121.093346
         },
         description: "Open hours 6:00 am - 10:00 pm",
-        image: require("./assets/Skatingrink.jpg")
+        image: require("./assets/Skatingrink.jpg"),
+        rating: 4
     },
     {
         title: "STAYGOLD",
@@ -35,7 +38,8 @@ let skateSpots = [
             longitude: 121.096615
         },
         description: "By Schedule/Appointment",
-        image: require("./assets/Staygold.jpg")
+        image: require("./assets/Staygold.jpg"),
+        rating: 4
     },
     //Caloocan
     {
@@ -45,7 +49,8 @@ let skateSpots = [
             longitude: 120.980540
         },
         description: "Open hours 2:00 pm - 10:00 pm",
-        image: require("./assets/9thave.jpg")
+        image: require("./assets/9thave.jpg"),
+        rating: 4
     },
 
     {
@@ -55,7 +60,8 @@ let skateSpots = [
             longitude: 120.977151
         },
         description: "Open hours 2:00 pm - 10:00 pm",
-        image: require("./assets/5thave.jpg")
+        image: require("./assets/5thave.jpg"),
+        rating: 4
     },
     // Makati
     {
@@ -65,7 +71,8 @@ let skateSpots = [
             longitude: 121.021196
         },
         description: "Open hours 10:00 am - 7:00 pm",
-        image: require("./assets/Gomo.jpg")
+        image: require("./assets/Gomo.jpg"),
+        rating: 4
     },
     // Malabon
     {
@@ -75,7 +82,8 @@ let skateSpots = [
             longitude: 120.959967
         },
         description: "Open hours 5:00 am - 10:00 pm",
-        image: require("./assets/Justice.jpg")
+        image: require("./assets/Justice.jpg"),
+        rating: 4
     },
     // Manila
     {
@@ -85,7 +93,8 @@ let skateSpots = [
             longitude: 120.996084
         },
         description: "By Schedule/Appointment",
-        image: require("./assets/Msp.jpg")
+        image: require("./assets/Msp.jpg"),
+        rating: 4
     },
     {
         title: "Sta. Mesa-Paco Bridge",
@@ -94,7 +103,8 @@ let skateSpots = [
             longitude: 121.012205
         },
         description: "Open hours 2:00 pm - 10:00 pm",
-        image: require("./assets/Tulay.jpg")
+        image: require("./assets/Tulay.jpg"),
+        rating: 4
     },
     {
         title: "Mendiola Streeet",
@@ -103,7 +113,8 @@ let skateSpots = [
             longitude: 120.992957
         },
         description: "Open hours 6:00 pm - 12:00 am",
-        image: require("./assets/Mendiola.jpg")
+        image: require("./assets/Mendiola.jpg"),
+        rating: 4
     },
     //Muntinlupa
     {
@@ -113,7 +124,8 @@ let skateSpots = [
             longitude: 121.033393
         },
         description: "Open hours 6:00 am - 10:00 pm",
-        image: require("./assets/Ovale.jpg")
+        image: require("./assets/Ovale.jpg"),
+        rating: 4
     },
     //Navotas
     {
@@ -123,7 +135,8 @@ let skateSpots = [
             longitude: 120.947878
         },
         description: "Open hours 6:00 am - 10:00 pm",
-        image: require("./assets/Navotas.jpg")
+        image: require("./assets/Navotas.jpg"),
+        rating: 4
     },
     //Pasig
     {
@@ -133,7 +146,8 @@ let skateSpots = [
             longitude: 121.083398
         },
         description: "Open hours 6:00 am - 10:00 pm",
-        image: require("./assets/Pasig.jpg")
+        image: require("./assets/Pasig.jpg"),
+        rating: 4
     },
     //Taguig
     {
@@ -143,7 +157,8 @@ let skateSpots = [
             longitude: 121.083779
         },
         description: "Open hours 3:00 pm - 10:00 pm",
-        image: require("./assets/Alfspot.jpeg")
+        image: require("./assets/Alfspot.jpeg"),
+        rating: 4
     },
     {
         title: "Bonifacio High Street",
@@ -152,7 +167,8 @@ let skateSpots = [
             longitude: 121.055327
         },
         description: "Open hours 6:00 pm - 12:00 am",
-        image: require("./assets/Bgc.jpg")
+        image: require("./assets/Bgc.jpg"),
+        rating: 4
     },
     //Pateros
     {
@@ -162,7 +178,8 @@ let skateSpots = [
             longitude: 121.072890
         },
         description: "By Schedule/Appointment",
-        image: require("./assets/Silangan.jpg")
+        image: require("./assets/Silangan.jpg"),
+        rating: 4
     },
     //Quezon City
     {
@@ -172,7 +189,8 @@ let skateSpots = [
             longitude: 121.020833
         },
         description: "Open hours 6:00 am - 12:00 am",
-        image: require("./assets/Toro.jpg")
+        image: require("./assets/Toro.jpg"),
+        rating: 4
     },
     {
         title: "Neo",
@@ -181,7 +199,8 @@ let skateSpots = [
             longitude: 121.056699
         },
         description: "Open hours 6:00 am - 7:00 pm",
-        image: require("./assets/Neo.jpg")
+        image: require("./assets/Neo.jpg"),
+        rating: 4
     },
     {
         title: "The Bike Playground",
@@ -190,7 +209,8 @@ let skateSpots = [
             longitude: 121.088914
         },
         description: "Open hours 8:00 am - 5:00 pm",
-        image: require("./assets/Bike.jpg")
+        image: require("./assets/Bike.jpg"),
+        rating: 4
     },
     //San Juan
     {
@@ -200,7 +220,8 @@ let skateSpots = [
             longitude: 121.029257
         },
         description: "Open hours 6:00 am - 10:00 pm",
-        image: require("./assets/Sanjuan.jpg")
+        image: require("./assets/Sanjuan.jpg"),
+        rating: 4
     },
     //Valenzuela
     {
@@ -210,7 +231,8 @@ let skateSpots = [
             longitude: 120.989265
         },
         description: "Open hours 6:00 am - 9:00 pm",
-        image: require("./assets/Punturin.jpg")
+        image: require("./assets/Punturin.jpg"),
+        rating: 4
     }
 ]
 

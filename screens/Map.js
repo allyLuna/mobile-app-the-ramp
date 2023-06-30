@@ -3,7 +3,8 @@ import MapView, {Callout, Circle, Marker} from 'react-native-maps';
 import { Image ,Dimensions, StyleSheet, View, Text, TextInput, Button, Animated, ScrollView, Pressable,  TouchableOpacity, Alert } from 'react-native';
 import * as Location from 'expo-location';
 import Geocoder from 'react-native-geocoding';
-import skateSpots from './Spots.js'
+import skateSpots from '../Spots.js'
+import StarRating from '../components/StarRating.js';
 
 const { width, height } = Dimensions.get("window");
 const CARD_HEIGHT = 220;
@@ -115,7 +116,7 @@ export default function Map() {
                   description={item.description}
                   onPress={(e)=>onMarkerPress(e)} 
                   style={styles.marker}
-                image={require('./assets/skate.png')}
+                image={require('../assets/skate.png')}
                 />
               )
             })
@@ -124,7 +125,7 @@ export default function Map() {
           return (
             <>
             <View style={styles.navbar}>
-            <Image style={styles.img} source = {require('./assets/minilogo.png')} />
+            <Image style={styles.img} source = {require('../assets/minilogo.png')} />
               <Text style={styles.appname}>THE RAMP</Text>
             </View>
 
@@ -206,11 +207,12 @@ export default function Map() {
                       <View style={styles.textContent}>
                         <Text numberOfLines={1} style={styles.cardtitle}>{marker.title}</Text>
                         <Text numberOfLines={1} style={styles.cardDescription}>{marker.description}</Text>
+                        <StarRating ratings={marker.rating}/>
                         <Pressable style={styles.btnstyle}
                                   onPress={() => Alert.alert('Simple Button pressed')} >
                            <Text style={styles.btnTitle}>Directions</Text>
                               </Pressable>
-                              <Pressable style={[styles.btnstyle, {position:'absolute', marginLeft: 115, marginTop: 55}]} 
+                              <Pressable style={[styles.btnstyle, {position:'absolute', marginLeft: 200, marginTop: 55}]} 
                                   onPress={() => Alert.alert('Simple Button pressed')} >
                            <Text style={styles.btnTitle}>Rate</Text>
                               </Pressable>
@@ -229,13 +231,14 @@ const styles = StyleSheet.create({
   
   btnstyle: {
     alignItems: 'center',
-    marginTop: 5,
    height: 25,
     borderRadius: 10,
     elevation: 1,
     backgroundColor: '#FFA559',
-    position:'relative',
-    width: 100,
+    position:'absolute',
+    width: 80,
+    marginLeft: 115, 
+    marginTop: 55
   },
   navbar:{
     width: '95%',
