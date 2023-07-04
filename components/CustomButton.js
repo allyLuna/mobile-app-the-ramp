@@ -1,18 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { View, StyleSheet,Text, Pressable, TouchableOpacity} from 'react-native';
 
-export default function App({ onPress, text, type = "PRIMARY"}) {
+export default function App({ bgColor, onPress, text}) {
     return ( 
       <TouchableOpacity 
         onPress={onPress} 
+
         style=
-          {[styles.container, 
-            /*styles['container_$'+{type}]*/]}>
+          {[styles.container,
+            bgColor ? {backgroundColor: bgColor} : {} ]}>
         <Text 
           style=
-            {[styles.buttonText , 
-              /*styles['buttonText_$'+{type}]*/]}>{text}</Text>
+            {[styles.buttonText]}>{text}</Text>
         <StatusBar style="auto" />
       </TouchableOpacity>
     );
@@ -27,22 +27,10 @@ export default function App({ onPress, text, type = "PRIMARY"}) {
         alignItems: 'center',
     },
 
-    container_PRIMARY:{
-        backgroundColor: '#FF6000',
-    },
-
-    container_TERTIARY  :{
-        backgroundColor: 'pink',
-    },
-
     buttonText: {
         color: '#FFF',
         padding: 15,
         fontSize: 16,
         fontWeight: 'bold',
-    },
-
-    buttonText_TERTIARY : {
-        color: '#000000',
-    },
+    }
   });

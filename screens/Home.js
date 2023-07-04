@@ -19,12 +19,13 @@ export default function Home() {
     return(
 
         <><View>
-             <Image style={styles.logo} source = {require('../assets/logo.jpg')} />
+             <Image style={[styles.logo, {width:200}]} source = {require('../assets/logo.png')} />
             <Text style={styles.tagline}>NO RULES. JUST SKATE.</Text>
         </View>
         
         <View>
         
+        <View style={styles.con2}>
         <CustomButton 
         text="Map"
         onPress={()=>navigation.navigate('Map')} />
@@ -32,7 +33,7 @@ export default function Home() {
             <CustomButton 
         text="Signout"
         onPress={()=>handleSignOut()} />
-
+        </View>
         </View></>
     )
 }
@@ -87,6 +88,10 @@ const styles = StyleSheet.create({
         width: 200,
         marginTop: 100,
         marginLeft: 75
+      },
+      con2:{
+        alignItems:'center',
+        marginTop: 50
       }
 })
 

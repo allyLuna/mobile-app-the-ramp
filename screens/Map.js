@@ -5,17 +5,21 @@ import * as Location from 'expo-location';
 import Geocoder from 'react-native-geocoding';
 import skateSpots from '../Spots.js'
 import StarRating from '../components/StarRating.js';
-
+import { useNavigation } from '@react-navigation/core';
+import Header from '../components/header';
 const { width, height } = Dimensions.get("window");
-const CARD_HEIGHT = 220;
+export const CARD_HEIGHT = 220;
 const CARD_WIDTH = width * 0.8;
 const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
+
+export let SkateIndex = 0;
 
 
 
 export default function Map() {
-
+  const navigation = useNavigation();
   const [location, setLocation] = React.useState();
+  const [spot, setSpot] = React.useState(0);
   const [address, setAddress] = React.useState('');
   const [pin, setPin] = React.useState({
       latitude: 14.6026439,
@@ -24,7 +28,14 @@ export default function Map() {
 
   Location.setGoogleApiKey("AIzaSyA4HDbV51yqB8e3uRlTCr1-MbLU_5TNpBY");
 
-    
+        const Spot = (x) => {
+            setSpot(x);console.log(spot)
+            SkateIndex = x;
+            return spot;
+            
+          }
+          
+          
 
       //set input text para dito beh
         const geocode = async () => {
@@ -121,13 +132,13 @@ export default function Map() {
               )
             })
           }
+
+        
+          
         //MAIN VIEW
           return (
             <>
-            <View style={styles.navbar}>
-            <Image style={styles.img} source = {require('../assets/minilogo.png')} />
-              <Text style={styles.appname}>THE RAMP</Text>
-            </View>
+            <Header/>
 
             <View style={styles.container}>
               <MapView style={styles.map}
@@ -138,13 +149,7 @@ export default function Map() {
                   latitudeDelta: 0.005,
                   longitudeDelta: 0.06,}}
                 showsUserLocation={true}
-                onUserLocationChange={(e) => {
-                  console.log("onUserLocationChange", e.nativeEvent.coordinate);
-                  setPin({
-                    latitude: e.nativeEvent.coordinate.latitude,
-                    longitude: e.nativeEvent.coordinate.longitude,
-                  });
-                } }
+                
               >
              
               {showSkateSpots()}
@@ -198,6 +203,8 @@ export default function Map() {
                     >
                     
                     {skateSpots.map((marker, index) =>(
+                      
+                      
                     <View style={styles.card} key={index}>
                       <Image 
                         source={marker.image}
@@ -209,11 +216,11 @@ export default function Map() {
                         <Text numberOfLines={1} style={styles.cardDescription}>{marker.description}</Text>
                         <StarRating ratings={marker.rating}/>
                         <Pressable style={styles.btnstyle}
-                                  onPress={() => Alert.alert('Simple Button pressed')} >
+                                  onPress={ () => { navigation.navigate('Directions'); {Spot(index)}}} >
                            <Text style={styles.btnTitle}>Directions</Text>
                               </Pressable>
                               <Pressable style={[styles.btnstyle, {position:'absolute', marginLeft: 200, marginTop: 55}]} 
-                                  onPress={() => Alert.alert('Simple Button pressed')} >
+                                  onPress={ () => { navigation.navigate('Rate'); {Spot(index)}}} > 
                            <Text style={styles.btnTitle}>Rate</Text>
                               </Pressable>
                       </View>
@@ -227,6 +234,7 @@ export default function Map() {
   );
 }
 
+
 const styles = StyleSheet.create({
   
   btnstyle: {
@@ -239,14 +247,6 @@ const styles = StyleSheet.create({
     width: 80,
     marginLeft: 115, 
     marginTop: 55
-  },
-  navbar:{
-    width: '95%',
-    paddingLeft: '5%',
-    marginTop: 50,
-    marginBottom: 10,
-    height: 45,
-    position: 'relative',
   },
 
   img:{

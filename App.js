@@ -7,8 +7,8 @@ import { onAuthStateChanged, User} from 'firebase/auth'
 import Home from './screens/Home.js';
 import Map from './screens/Map.js';
 import SignUp from './screens/SignUp.js';
-import Rating from './Rating.js';
-import Rating2 from './Rating2.js';
+import Rate from './screens/Rate.js';
+import Directions from './screens/Directions.js';
 import { FIREBASE_AUTH } from './FirebaseConfig.ts';
 import {firebase} from './config'
 
@@ -24,6 +24,10 @@ function InsideLayout(){
           name="Home" component={Home} options={{headerShown:false}} />
           <InsideStack.Screen 
           name="Map" component={Map} options={{headerShown:false}} />
+           <InsideStack.Screen 
+          name="Rate" component={Rate} options={{headerShown:false}} />
+           <InsideStack.Screen 
+          name="Directions" component={Directions} options={{headerShown:false}} />
       </InsideStack.Navigator>
       
     )

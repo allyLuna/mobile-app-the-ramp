@@ -6,52 +6,37 @@ import { AirbnbRating, Rating} from 'react-native-ratings';
 const Rating2 = () => {
   
   return(
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
         
         <Rating
+        style={styles.con}
         type='star' 
         selectedColor='#FF6000'
         unselectColor= 'lightgray'
         showRating={false}
         ratingCount={5}
         startingValue={2}
-         imageSize={20}
+         imageSize={25}
+         ratingBackgroundColor='#FFA559'
         />
    
-    </SafeAreaView>
+    </View>
   )
 };
 
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    margin: 10,
-    justifyContent: 'center'
-  },
-  textStyle:{
-    textAlign: 'center',
-    fontSize: 24,
-    marginTop: 20
-  },
-  customRatingBarStyle:{
     justifyContent: 'center',
-    flexDirection: 'row',
-    marginTop: 30,
-  
-  },
-  starImgStyle:{
-    width: 40,
-    height: 40,
-   
     
   },
-  btnStyle:{
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
-    padding: 15,
-    backgroundColor: '#FFA559'
+  con:{
+    width: 50,
+    height: 45,
+    marginBottom: 490,
+    marginLeft: 25
   }
+  
 })
 
 export default Rating2;

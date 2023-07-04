@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {Alert,StyleSheet, Text, View, Image, useWindowDimensions, ScrollView, Dimensions, KeyboardAvoidingView} from 'react-native';
-import Logo from '../assets/logo.jpg'; 
+import Logo from '../assets/logo.png'; 
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/header'
@@ -54,26 +54,16 @@ export default function SignUp() {
 
 
   return (
-  <ScrollView>  
+  
     <KeyboardAvoidingView style={styles.container}>
     
       <Image 
         source={Logo} 
-        style={[styles.logo, {height: 150}]}
+        style={[styles.logo, {height: 175}]}
         resizeMode='contain'
       />  
-      <Text style={styles.textHeader}> Create New Account </Text>
+      <Text style={styles.textHeader}> NO RULES. JUST SKATE. </Text>
 
-      <CustomInput 
-        placeholder="Name"
-        value={name} 
-        setValue={setName}  
-        />
-      <CustomInput 
-        placeholder="Username"
-        value={username} 
-        setValue={setUsername} 
-        />
       <CustomInput 
         placeholder="E-mail"
         value={email} 
@@ -83,18 +73,21 @@ export default function SignUp() {
         value={password} 
         setValue={setPassword}
         secureTextEntry={true} />
-
-      <CustomButton 
-        text="Sign Up"
-        onPress={()=>handleSignUp(email,password)} />
+       
+      
 
       <CustomButton
         text="Login"
         onPress={()=>handleLogin(email,password)}
       />
+
+    <CustomButton 
+        text="Sign Up"
+        bgColor="black"
+        onPress={()=>handleSignUp(email,password)} />
       <StatusBar style="auto" />
     </KeyboardAvoidingView>
-    </ScrollView>  
+    
   );
 
   
@@ -105,16 +98,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    marginTop: 20,
     padding: 20,
   },
 
   textHeader: {
-    color: '#FF6000',
-    marginBottom: 20,
-    marginTop: 20,
+    color: '#FFA559',
+    marginBottom: 40,
+    marginTop: 5,
     fontSize: 20,
     fontWeight: 'bold',
     padding:  10,
+    fontWeight: '700'
+  },
+  btn:{
+   marginTop: 10,
+  },
+  logo:{
+    marginTop: 60
+  },
+  con2:{
+    alignItems:'center',
+    marginTop: 50
   }
 });
