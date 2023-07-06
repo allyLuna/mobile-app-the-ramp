@@ -52,5 +52,4 @@
       longitude: e.nativeEvent.coordinate.longitude,
     });
   } }
-  "AIzaSyDoB5rt0-yhUl1wxnV_gPpE0kaPyrf-M0E"
-  */
+ 
