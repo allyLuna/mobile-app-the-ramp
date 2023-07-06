@@ -52,6 +52,7 @@
       longitude: e.nativeEvent.coordinate.longitude,
     });
   } }
+<<<<<<< HEAD
   "AIzaSyDoB5rt0-yhUl1wxnV_gPpE0kaPyrf-M0E"
   AIzaSyA4HDbV51yqB8e3uRlTCr1-MbLU_5TNpBY
   <FlatList
@@ -74,3 +75,6 @@
           )}
       ></FlatList>
   */
+=======
+ 
+>>>>>>> dfc1611ac1b153ad1d38222298d9a5329650dd28
