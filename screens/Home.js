@@ -4,7 +4,6 @@ import Logo from '../Logo.js';
 import {NavigationProp} from '@react-navigation/native-stack'
 import { useNavigation } from '@react-navigation/core';
 import { FIREBASE_AUTH } from '../FirebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import CustomButton from '../components/CustomButton';
 
 export default function Home() {
@@ -15,7 +14,7 @@ export default function Home() {
     FIREBASE_AUTH.signOut()
   }
 
-    //const { onPress, title = 'FIND RAMPS' } = props;
+    
     return(
 
         <><View>
@@ -27,7 +26,7 @@ export default function Home() {
         
         <View style={styles.con2}>
         <CustomButton 
-        text="Map"
+        text="Find Skate Ramps"
         onPress={()=>navigation.navigate('Map')} />
 
             <CustomButton 

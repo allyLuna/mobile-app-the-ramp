@@ -74,7 +74,7 @@ const Directions = () => {
                     <MapViewDirections
                         origin={pin}
                         destination={skateSpots[SkateIndex].location}
-                        apikey={""} // insert your API Key here
+                        apikey={"AIzaSyDoB5rt0-yhUl1wxnV_gPpE0kaPyrf-M0E"} // insert your API Key here
                         strokeWidth={4}
                         strokeColor="#111111"
                         timePrecision='now'

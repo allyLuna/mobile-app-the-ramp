@@ -10,7 +10,7 @@ import SignUp from './screens/SignUp.js';
 import Rate from './screens/Rate.js';
 import Directions from './screens/Directions.js';
 import { FIREBASE_AUTH } from './FirebaseConfig.ts';
-import {firebase} from './config'
+
 
 const Stack = createNativeStackNavigator();
 
@@ -40,9 +40,11 @@ export default function App() {
       onAuthStateChanged(FIREBASE_AUTH, (user) => {
         console.log('user', user);
         setUser(user);
+        //USER = user.email;
       })
   }, [])
 
+ 
   return (
     <NavigationContainer>
     <Stack.Navigator>

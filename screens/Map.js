@@ -7,6 +7,9 @@ import skateSpots from '../Spots.js'
 import StarRating from '../components/StarRating.js';
 import { useNavigation } from '@react-navigation/core';
 import Header from '../components/header';
+
+
+
 const { width, height } = Dimensions.get("window");
 export const CARD_HEIGHT = 220;
 const CARD_WIDTH = width * 0.8;
@@ -18,7 +21,6 @@ export let SkateIndex = 0;
 
 export default function Map() {
   const navigation = useNavigation();
-  const [location, setLocation] = React.useState();
   const [spot, setSpot] = React.useState(0);
   const [address, setAddress] = React.useState('');
   const [pin, setPin] = React.useState({
@@ -26,7 +28,7 @@ export default function Map() {
       longitude: 121.0029067,
       });
 
-  Location.setGoogleApiKey("");
+  Location.setGoogleApiKey("AIzaSyA4HDbV51yqB8e3uRlTCr1-MbLU_5TNpBY");
 
         const Spot = (x) => {
             setSpot(x);console.log(spot)

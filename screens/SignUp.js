@@ -8,31 +8,25 @@ import Header from '../components/header'
 import { FIREBASE_AUTH } from '../FirebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
-import {firebase} from '../config'
+export let USER = '';
 
 
 export default function SignUp() {
 
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
+ 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const auth = FIREBASE_AUTH
-  const {height} = Dimensions.get('window').height;
-  const [loading, setLoading] = useState(false);
- /*const onSignUpPressed = () => {
-    console.warn("Sign Up");
-  }
-  const onSignInPressed = () => {
-    console.warn("Sign In")};
-  */
+ 
+ 
 
      const handleSignUp = async () => {
       //setLoading(true);
        try{
          const response =  await createUserWithEmailAndPassword(auth, email, password);
          console.log(response);
-         alert('Check Emails')
+         USER = email;
+         alert('Account Created')
        } catch (error){
          console.log(error);
          alert('Sign up failed ' + error.message)
@@ -43,7 +37,8 @@ export default function SignUp() {
 
   const handleLogin = async () => {
     try{
-      const response = await signInWithEmailAndPassword(auth,email, password);
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      USER = email;
       console.log(response);
     } catch (error){
       console.log(error);
