@@ -53,4 +53,24 @@
     });
   } }
   "AIzaSyDoB5rt0-yhUl1wxnV_gPpE0kaPyrf-M0E"
+  AIzaSyA4HDbV51yqB8e3uRlTCr1-MbLU_5TNpBY
+  <FlatList
+          data = {newData}
+          numColumns={1}
+          renderItem={({item})=>(
+              <Pressable
+                style = {StyleSheet.container}
+              >
+              <View style={StyleSheet.innerContainer}>
+                <Text>
+                  {item.email}
+                </Text>
+                <Text>
+                  {item.comment}
+                </Text>
+              </View>
+
+              </Pressable>
+          )}
+      ></FlatList>
   */
