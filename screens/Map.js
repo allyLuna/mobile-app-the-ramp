@@ -26,7 +26,7 @@ export default function Map() {
       longitude: 121.0029067,
       });
 
-  Location.setGoogleApiKey("AIzaSyA4HDbV51yqB8e3uRlTCr1-MbLU_5TNpBY");
+  Location.setGoogleApiKey("");
 
         const Spot = (x) => {
             setSpot(x);console.log(spot)

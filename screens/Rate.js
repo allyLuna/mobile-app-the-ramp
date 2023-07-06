@@ -7,24 +7,56 @@ import ReviewItem from '../components/reviewItem';
 import Header from '../components/header';
 import Logo from '../assets/Silangan.jpg'; 
 import skateSpots from '../Spots';
-import {SkateIndex} from  './Map.js';
-
-import { AirbnbRating, Rating} from 'react-native-ratings';
+import { SkateIndex } from  './Map.js';
+import { FIRESTORE_DB } from '../FirebaseConfig';
+import {Rating} from 'react-native-ratings';
+import { Firestore } from 'firebase/firestore';
+import {firebase} from 'firebase/app'
+const db = FIRESTORE_DB;
 export default function Rate() {
   
-  const [review, setReview] = useState([
-    {item: 'sample review', key: '1'},
-    {item: 'sample review', key: '1'},
-  ]);
-
-
- 
-
-  const {height} = useWindowDimensions();
+  const todoRef = db(db).collection('New Park')
+  
+  const [skateSpot, setSkateSpot] = useState('');
+  const [uname, setUname] = useState('USER1');
+  const [comment, setComment] = useState('');
+  const [SKRating, setSKRating] = useState(0);
 
   const onSubmitReview = () => {
     console.warn("Submit Review");
-    console.log(obj)
+    setUname('USER 1');
+  }
+
+  const getRatingVal =(value) => {
+    console.log(value)
+  }
+
+
+  //add new data to collection
+  const addData = () => {
+    // check if we have new field data
+    if (username && username.length && comment && comment.length && SKRating && SKRating.length > 0){
+        //get the timestamp
+        
+        const data = {
+            username: uname,
+            comment : comment,
+            Rating  : SKRating,
+          
+        };
+        todoRef
+          .add(data)
+          .then(() => {
+              // release the new field state
+              setUname(''),
+              setComment(''),
+              setSKRating(0);
+          })
+          .catch((error) => {
+            // show an alert in case of error
+            alert(error);
+          })
+    }
   }
 
   return (
@@ -52,15 +84,19 @@ export default function Rate() {
             ratingCount={5}
             startingValue={2}
             imageSize={25}
-            ratingBackgroundColor='#FFA559' />
+            ratingBackgroundColor='#FFA559' 
+            onChange={this.getRatingVal}
+            />
         </View>
 
-        <CustomMultiline placeholder="Leave comments about the place" />
+        <CustomMultiline placeholder="Leave comments about the place"
+          onChangeText={(text) => setComment(text)}
+        />
 
       </View>
       <CustomButton
         text="Submit Rating"
-        onPress={onSubmitReview} />
+        onPress={addData()} />
 
       <StatusBar style="auto" />
     </View></>
