@@ -28,7 +28,7 @@ export default function Map() {
       longitude: 121.0029067,
       });
 
-  Location.setGoogleApiKey("AIzaSyA4HDbV51yqB8e3uRlTCr1-MbLU_5TNpBY");
+    Location.setGoogleApiKey("AIzaSyA4HDbV51yqB8e3uRlTCr1-MbLU_5TNpBY");
 
         const Spot = (x) => {
             setSpot(x);console.log(spot)
@@ -66,6 +66,7 @@ export default function Map() {
                   latitude: location.coords.latitude,
                   longitude: location.coords.longitude,
               });
+              
           })();
       }, []);
 
@@ -151,7 +152,13 @@ export default function Map() {
                   latitudeDelta: 0.005,
                   longitudeDelta: 0.06,}}
                 showsUserLocation={true}
-                
+                onUserLocationChange={(e) => {
+              console.log("onUserLocationChange", e.nativeEvent.coordinate);
+              setPin({
+                latitude: e.nativeEvent.coordinate.latitude,
+                longitude: e.nativeEvent.coordinate.longitude,
+              });
+            } }
               >
              
               {showSkateSpots()}

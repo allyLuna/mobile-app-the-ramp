@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import {StyleSheet, Text, View, Image, useWindowDimensions, ScrollView, FlatList, Pressable} from 'react-native';
+import {StyleSheet, Text, View, Image, useWindowDimensions, ScrollView, FlatList, Pressable, TouchableHighlight, KeyboardAvoidingView} from 'react-native';
 import CustomButton from '../components/CustomButton';
 import CustomMultiline from '../components/CustomMultiline';
 import reviewItem from '../components/reviewItem';
@@ -10,81 +10,83 @@ import { SkateIndex } from  './Map.js';
 import { FIRESTORE_DB } from '../FirebaseConfig';
 import {Rating} from 'react-native-ratings';
 import {collection, addDoc, onSnapshot, QuerySnapshot, getDoc, doc, DocumentSnapshot} from 'firebase/firestore'
+import { ref, onValue} from 'firebase/database';
 import {USER} from './SignUp'
 import { useNavigation } from '@react-navigation/core';
+
 export let avg;
 //export let SKTitle;
-
+var comment1 = " ";
+var comment2 = " ";
 export default function Rate() {
-  const [newData, setNewData] = useState([]);
+  const colRef = collection(FIRESTORE_DB, skateSpots[SkateIndex].title)    
+
   const [comment, setComment] = useState('');
   const [SKRating, setSKRating] = useState();
   const navigation = useNavigation();
   var [ratings, setRating] = useState([]);
   var [SRComment, setSRComment] = useState([]);
-  var cmt ='';
-  //SKTitle = skateSpots[SkateIndex].title;
-
-        //GET DATA FOR RATING AVERAGE
-        const getDATA = () => {
-            // collection ref
-          const colRef = collection(FIRESTORE_DB, skateSpots[SkateIndex].title)    
+  
+      //getComments
+      const  getComments =  () => {
           // realtime collection data
+         // useEffect(() =>{
             onSnapshot(colRef, (snapshot) => {
-              ratings = []
-                snapshot.docs.forEach(doc => {
-                 // ratings.push({ ...doc.data(), id: doc.id })
-                 ratings.push(doc.get('Rating'))
-                    })  
-              console.log('Data:',ratings);
+              SRComment = []
+                  snapshot.docs.forEach(doc => {
+                  // ratings.push({ ...doc.data(), id: doc.id })(doc.get('comment'))
+                    SRComment.push(doc.get("comment"))
+                      })  
+                  console.log('Data Comment:', SRComment[0]);
+                  comment1 = SRComment[0];
+                  comment2 = SRComment[1];
+                  console.log('Data Comment1:', comment1);
+                })
+               // },[])
+              }
+
+              {getComments();}
+
+            //GET DATA FOR RATING AVERAGE
+        const getDATA = () => {
+              // realtime collection data
+              onSnapshot(colRef, (snapshot) => {
+                ratings = []
+                  snapshot.docs.forEach(doc => {
+                  // ratings.push({ ...doc.data(), id: doc.id })
+                    ratings.push(doc.get('Rating'))
+                      })  
+                  console.log('Data:',ratings);
+                  //console.log('tHISIS:',  SRComment[0]);
+              })
+            }
+        
+          // add new data
+          const addData = async () => {
+          const doc = addDoc(collection(FIRESTORE_DB, skateSpots[SkateIndex].title), {
+            email: USER,
+            comment: comment,
+            Rating: SKRating
           })
+          console.log(doc)
         }
-
-
-        //GET DATA FOR RATING AVERAGE
-        const getComments = () => {
-          // collection ref
-        const colRef = collection(FIRESTORE_DB, skateSpots[SkateIndex].title)    
-        // realtime collection data
-          onSnapshot(colRef, (snapshot) => {
-            SRComment = []
-              snapshot.docs.forEach(doc => {
-              // ratings.push({ ...doc.data(), id: doc.id })
-              SRComment.push(doc.get('comment'))
-                  })  
-            console.log('Data:',SRComment[0]);
-        })
-        cmt = SRComment[0];
-        }
-
-      
-
-      // add new data
-      const addData = async () => {
-      const doc = addDoc(collection(FIRESTORE_DB, skateSpots[SkateIndex].title), {
-        email: USER,
-        comment: comment,
-        Rating: SKRating
-      })
-      console.log(doc)
-    }
 
     //GET AVERAGE
-     getAverage = () => {
-      avg = ratings.reduce((a,b) => a + parseFloat(b),0) / ratings.length;
-      console.log('AVERAGE', avg)
-    }
+        const getAverage = () => {
+          avg = ratings.reduce((a,b) => a + parseFloat(b),0) / ratings.length;
+          console.log('AVERAGE', avg)
+        }
 
-    // get rating value
-    function ratingCompleted(rating) {
-      console.log("Rating is: " + rating)
-      setSKRating(rating);
-    }
+        // get rating value
+        function ratingCompleted(rating) {
+          console.log("Rating is: " + rating)
+          setSKRating(rating);
+        }
+ 
     
-    {getComments()};
-  return (
+   return (
     
-    <><Header /><View style={styles.container}>
+    <><Header /><KeyboardAvoidingView style={styles.container}>
 
       <Text style={styles.header}>{skateSpots[SkateIndex].title}</Text>
 
@@ -95,9 +97,10 @@ export default function Rate() {
 
 
         <View style={styles.review}>
-            
-            <Text>{SRComment[0]}</Text>
-          
+         <Text style={styles.cmt}> {comment1} </Text>
+        </View>
+        <View style={styles.review}>
+         <Text style={styles.cmt}>{comment2}</Text>
         </View>
 
       <View style={styles.content}>
@@ -127,16 +130,9 @@ export default function Rate() {
       </View>
       <CustomButton
         text="Submit Rating"
-        onPress={() => {addData(); alert('Rating Submitted')}} />
-        <CustomButton
-        text=" Rating"
-        onPress={() => {getDATA(); getAverage();}} />
-
-
-
-    
-      <StatusBar style="auto" />
-    </View></>
+        onPress={() => {addData(); alert('Rating Submitted');getDATA(); getAverage(); navigation.navigate('Home')}} />
+     <StatusBar style="auto" />
+    </KeyboardAvoidingView></>
   );
 }
 
@@ -218,12 +214,15 @@ const styles = StyleSheet.create({
   review:{
       color: '#000',
       padding: 16,
-      marginTop: 10,
+      marginTop: 5,
       borderRadius: 10,
       borderStyle: "dashed",
       backgroundColor: "#D6E4E5",
       height: 50,
       width: 320,
       marginBottom: 10
+  },
+  cmt:{
+    fontStyle: 'italic'
   }
 });

@@ -31,6 +31,7 @@ export default function Home() {
 
             <CustomButton 
         text="Signout"
+        bgColor="black"
         onPress={()=>handleSignOut()} />
         </View>
         </View></>
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
       },
       con2:{
         alignItems:'center',
-        marginTop: 50
+        marginTop: 90
       }
 })
 

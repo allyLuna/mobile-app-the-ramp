@@ -5,8 +5,9 @@ import Logo from '../assets/logo.png';
 import CustomInput from '../components/CustomInput';
 import CustomButton from '../components/CustomButton';
 import Header from '../components/header'
-import { FIREBASE_AUTH } from '../FirebaseConfig';
+import { FIREBASE_AUTH, FIREBASE_ANALYTICS } from '../FirebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { logLogin} from 'firebase/analytics'
 
 export let USER = '';
 
@@ -18,10 +19,15 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const auth = FIREBASE_AUTH
  
- 
+      /*const analytics = async () => {
+        await loglogin(FIREBASE_ANALYTICS, {
+          method: 'facebook',
+        })
+      }*/
 
      const handleSignUp = async () => {
       //setLoading(true);
+      
        try{
          const response =  await createUserWithEmailAndPassword(auth, email, password);
          console.log(response);
@@ -36,6 +42,7 @@ export default function SignUp() {
     }
 
   const handleLogin = async () => {
+    
     try{
       const response = await signInWithEmailAndPassword(auth, email, password);
       USER = email;

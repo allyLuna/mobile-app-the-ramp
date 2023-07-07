@@ -12,6 +12,7 @@ import Directions from './screens/Directions.js';
 import { FIREBASE_AUTH } from './FirebaseConfig.ts';
 
 
+
 const Stack = createNativeStackNavigator();
 
 const InsideStack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ function InsideLayout(){
           name="Rate" component={Rate} options={{headerShown:false}} />
            <InsideStack.Screen 
           name="Directions" component={Directions} options={{headerShown:false}} />
+          
       </InsideStack.Navigator>
       
     )
